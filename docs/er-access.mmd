@@ -1,0 +1,33 @@
+erDiagram
+    XBIZ_GROUPS_MASTER ||--o{ APP_USERS : "groups"
+    XBIZ_GROUPS_MASTER ||--o{ XBIZ_GROUPS_DETAIL : grants
+    XBIZ_APP_SEGMENTS ||--o{ XBIZ_GROUPS_DETAIL : "controls access to"
+
+    APP_USERS {
+        number recid PK
+        string userid UK
+        string password
+        number groupid FK
+        string admin
+    }
+    XBIZ_GROUPS_MASTER {
+        number groupid PK
+        string grouptitle
+    }
+    XBIZ_GROUPS_DETAIL {
+        number groupid FK
+        number segmentid FK
+        number segmentparent
+        string segmenttype
+        number pageid
+        string itemrole
+        string allow_access
+    }
+    XBIZ_APP_SEGMENTS {
+        number segmentid PK
+        string segmenttitle
+        number segmentparent
+        string segmenttype
+        number pageid
+        string itemrole
+    }

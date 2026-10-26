@@ -1,0 +1,82 @@
+erDiagram
+    CUSTOMERS ||--o{ ORDERS : places
+    ORDERS ||--|{ ORDER_ITEMS : contains
+    PRODUCT_INFO ||--o{ ORDER_ITEMS : "sold in"
+    SUPPLIERS ||--o{ PURCHASE_ORDER : supplies
+    PURCHASE_ORDER ||--|{ PURCHASE_ITEMS : contains
+    PRODUCT_INFO ||--o{ PURCHASE_ITEMS : "bought in"
+
+    CUSTOMERS {
+        number customerid PK
+        string customer_first_name
+        string customer_last_name
+        string customer_street_address1
+        string customer_street_address2
+        string customer_city
+        string customer_state
+        string customer_postal_code
+        string customer_email
+        string customer_phone1
+        string customer_phone2
+        string url
+        number credit_limit
+        string tags
+    }
+    ORDERS {
+        number order_id PK
+        number customer_id FK
+        number order_total
+        date order_time
+        string username FK
+        string tags
+    }
+    ORDER_ITEMS {
+        number order_item_id PK
+        number order_id FK
+        number product_id FK
+        number unit_price
+        number quantity
+    }
+    PRODUCT_INFO {
+        number product_id PK
+        string product_name
+        string product_info
+        string category
+        string availability
+        number list_price
+        blob product_image
+        string mimetype
+        string filename
+        date image_last_update
+    }
+    SUPPLIERS {
+        number supp_id PK
+        string supp_name
+        string supp_phone
+        string supp_email
+        string supp_address
+        string contact_person
+        string supp_con_phone
+        number total_purchase
+        number total_paid
+        number supp_due
+    }
+    PURCHASE_ORDER {
+        number pur_ord_id PK
+        string invoice_id
+        date pur_ord_date
+        number supp_id FK
+        number total
+        number discount
+        number vat
+        number purchase_total
+    }
+    PURCHASE_ITEMS {
+        number pur_item_id PK
+        number pur_ord_id FK
+        number product_id FK
+        string product_name
+        number price
+        number commission
+        number item_qty
+    }

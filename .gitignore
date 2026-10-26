@@ -1,0 +1,11 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secrets / DB wallets
+*.env
+.env*
+wallet/
+*.pem
